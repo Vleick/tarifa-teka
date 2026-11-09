@@ -95,7 +95,7 @@ main { padding: 12px max(14px, env(safe-area-inset-right, 0px)) 28px max(14px, e
 .price:active { filter: brightness(.94); }
 .price.done .ph { color: var(--ok); }
 .price.a.done .ph { color: #6fe0a6; }
-.actions { display: flex; justify-content: space-between; align-items: center; gap: 6px; margin-top: 8px; }
+.actions { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 2px 6px; margin-top: 8px; }
 .web { display: inline-flex; align-items: center; gap: 7px; font-weight: 700; font-size: 13px; color: var(--red);
   padding: 8px 10px 8px 6px; border-radius: 10px; text-decoration: none; }
 .web:active { background: var(--soft); }
@@ -345,7 +345,7 @@ function card(it) {
         <span class="pl">Tarifa asociado</span><span class="pv">${esc(it.asociado)}</span>
         <span class="ph">${ico("copy")}<span>Copiar importe</span></span></button>
     </div>
-    <div class="actions"><a class="web" data-share href="${esc(webLink(it))}" target="_blank" rel="noopener">${ico("ext")}Ver en teka.com</a><a class="wa" data-share href="${esc(waLink(it))}" target="_blank" rel="noopener">${ico("wa")}Enviar por WhatsApp</a></div>
+    <div class="actions"><a class="web" data-share href="${esc(webLink(it))}" target="_blank" rel="noopener">${ico("ext")}Ver en teka.com</a><a class="wa" data-share href="${esc(waLink(it))}" target="_blank" rel="noopener">${ico("wa")}WhatsApp</a></div>
   </article>`;
 }
 function welcome(hasData) {
