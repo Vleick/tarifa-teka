@@ -100,10 +100,10 @@ main { padding: 12px max(14px, env(safe-area-inset-right, 0px)) 28px max(14px, e
   padding: 10px 6px; border-radius: 10px; text-decoration: none; box-shadow: 0 0 0 1px var(--line); }
 .web:active { background: var(--soft); }
 .web svg { width: 17px; height: 17px; }
-.wa { display: flex; justify-content: center; align-items: center; gap: 7px; min-width: 0; text-align: center; line-height: 1.15; font-weight: 700; font-size: 13px; color: var(--wa);
+.sendmsg { display: flex; justify-content: center; align-items: center; gap: 7px; min-width: 0; text-align: center; line-height: 1.15; font-weight: 700; font-size: 13px; color: var(--wa);
   padding: 10px 6px; border-radius: 10px; text-decoration: none; box-shadow: 0 0 0 1px var(--line); }
-.wa:active { background: var(--soft); }
-.wa svg { width: 18px; height: 18px; }
+.sendmsg:active { background: var(--soft); }
+.sendmsg svg { width: 18px; height: 18px; }
 .more { width: 100%; padding: 14px; border-radius: 14px; background: var(--card); color: var(--red); font-weight: 800;
   box-shadow: 0 0 0 1px var(--line); }
 
@@ -317,7 +317,7 @@ async function copyText(text) {
 const money = v => v.replace(" €", "€").trim();
 function waLink(it) {
   const t = `*${it.modelo}*\nRef. ${it.ref} · EAN ${it.ean}\nTarifa normal: ${money(it.normal)}\nTarifa asociado: ${money(it.asociado)}`;
-  return "https://wa.me/?text=" + encodeURIComponent(t);
+  return "https://api.whatsapp.com/send?text=" + encodeURIComponent(t);
 }
 // Búsqueda de la web oficial por referencia (el navegador no deja consultar teka.com desde la app, así que se abre su buscador)
 const webLink = it => "https://www.teka.com/es-es/?s=" + encodeURIComponent(it.ref);
@@ -345,7 +345,7 @@ function card(it) {
         <span class="pl">Tarifa asociado</span><span class="pv">${esc(it.asociado)}</span>
         <span class="ph">${ico("copy")}<span>Copiar importe</span></span></button>
     </div>
-    <div class="actions"><a class="web" data-share href="${esc(webLink(it))}" target="_blank" rel="noopener">${ico("ext")}Ver en teka.com</a><a class="wa" data-share href="${esc(waLink(it))}" target="_blank" rel="noopener">${ico("wa")}WhatsApp</a></div>
+    <div class="actions"><a class="web" data-share href="${esc(webLink(it))}" target="_blank" rel="noopener">${ico("ext")}Ver en teka.com</a><a class="sendmsg" data-share href="${esc(waLink(it))}" target="_blank" rel="noopener">${ico("wa")}WhatsApp</a></div>
   </article>`;
 }
 function welcome(hasData) {
@@ -406,7 +406,7 @@ function openMenu() {
       ${installEvt ? `<button class="btn ghost" data-act="install">${ico("dl")}Instalar app en el móvil</button>` : ""}
       <button class="btn ghost" data-act="close">Cerrar</button>
     </div>
-    <p class="credit" style="margin-top:16px">© 2026 · Alejandro Garzón · versión 4</p>`);
+    <p class="credit" style="margin-top:16px">© 2026 · Alejandro Garzón · versión 5</p>`);
 }
 function notice(title, text) {
   openSheet(`<h2>${esc(title)}</h2><p>${text}</p><div class="row"><button class="btn" data-act="close">Entendido</button></div>`);
