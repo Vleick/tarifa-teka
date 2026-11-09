@@ -95,7 +95,11 @@ main { padding: 12px max(14px, env(safe-area-inset-right, 0px)) 28px max(14px, e
 .price:active { filter: brightness(.94); }
 .price.done .ph { color: var(--ok); }
 .price.a.done .ph { color: #6fe0a6; }
-.actions { display: flex; justify-content: flex-end; margin-top: 8px; }
+.actions { display: flex; justify-content: space-between; align-items: center; gap: 6px; margin-top: 8px; }
+.web { display: inline-flex; align-items: center; gap: 7px; font-weight: 700; font-size: 13px; color: var(--red);
+  padding: 8px 10px 8px 6px; border-radius: 10px; text-decoration: none; }
+.web:active { background: var(--soft); }
+.web svg { width: 17px; height: 17px; }
 .wa { display: inline-flex; align-items: center; gap: 7px; font-weight: 700; font-size: 13px; color: var(--wa);
   padding: 8px 10px; border-radius: 10px; text-decoration: none; }
 .wa:active { background: var(--soft); }
@@ -168,6 +172,7 @@ main { padding: 12px max(14px, env(safe-area-inset-right, 0px)) 28px max(14px, e
   <symbol id="i-menu" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5.5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="18.5" r="2"/></symbol>
   <symbol id="i-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7.5A2.5 2.5 0 0 0 5 5.5v13A2.5 2.5 0 0 0 7.5 21h9a2.5 2.5 0 0 0 2.5-2.5V8z"/><path d="M14 3v5h5M12 17v-6M9.5 13.5L12 11l2.5 2.5"/></symbol>
   <symbol id="i-wa" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.9L2 22l5.25-1.38A9.9 9.9 0 1 0 12.04 2zm0 1.8a8.1 8.1 0 1 1-4.3 15l-.31-.19-3.1.82.83-3.02-.2-.32A8.1 8.1 0 0 1 12.04 3.8zm-3.1 3.9c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.5s1.07 2.9 1.22 3.1c.15.2 2.1 3.2 5.1 4.5 2.5 1.05 3 .85 3.55.8.55-.05 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.5-1.78-1.67-2.08-.17-.3-.02-.46.13-.6.14-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.2-.24-.58-.49-.5-.67-.51h-.57z"/></symbol>
+  <symbol id="i-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10"/></symbol>
   <symbol id="i-dl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7.5 11L12 15.5 16.5 11M5 20h14"/></symbol>
 </svg>
 
@@ -314,6 +319,8 @@ function waLink(it) {
   const t = `*${it.modelo}*\nRef. ${it.ref} · EAN ${it.ean}\nTarifa normal: ${money(it.normal)}\nTarifa asociado: ${money(it.asociado)}`;
   return "https://wa.me/?text=" + encodeURIComponent(t);
 }
+// Búsqueda de la web oficial por referencia (el navegador no deja consultar teka.com desde la app, así que se abre su buscador)
+const webLink = it => "https://www.teka.com/es-es/?s=" + encodeURIComponent(it.ref);
 function remember(ref) {
   state.recents = [ref, ...state.recents.filter(r => r !== ref)].slice(0, 15);
   lsSet("teka_recents", state.recents);
@@ -338,7 +345,7 @@ function card(it) {
         <span class="pl">Tarifa asociado</span><span class="pv">${esc(it.asociado)}</span>
         <span class="ph">${ico("copy")}<span>Copiar importe</span></span></button>
     </div>
-    <div class="actions"><a class="wa" data-share href="${esc(waLink(it))}" target="_blank" rel="noopener">${ico("wa")}Enviar por WhatsApp</a></div>
+    <div class="actions"><a class="web" data-share href="${esc(webLink(it))}" target="_blank" rel="noopener">${ico("ext")}Ver en teka.com</a><a class="wa" data-share href="${esc(waLink(it))}" target="_blank" rel="noopener">${ico("wa")}Enviar por WhatsApp</a></div>
   </article>`;
 }
 function welcome(hasData) {

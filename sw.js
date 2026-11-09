@@ -1,5 +1,5 @@
 // Service worker: guarda la app para que abra sin conexión. Sube la versión al cambiar archivos.
-const CACHE = "teka-tarifa-v1";
+const CACHE = "teka-tarifa-v2";
 const FILES = ["./", "index.html", "manifest.webmanifest", "pdf.min.js", "pdf.worker.min.js",
   "icon-192.png", "icon-512.png", "icon-maskable-512.png", "apple-touch-icon.png"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES)).then(() => self.skipWaiting())); });
