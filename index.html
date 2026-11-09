@@ -99,6 +99,7 @@ main { padding: 12px max(14px, env(safe-area-inset-right, 0px)) 28px max(14px, e
 .web { display: flex; justify-content: center; align-items: center; gap: 7px; min-width: 0; text-align: center; line-height: 1.15; font-weight: 700; font-size: 13px; color: var(--red);
   padding: 10px 6px; border-radius: 10px; text-decoration: none; box-shadow: 0 0 0 1px var(--line); }
 .web:active { background: var(--soft); }
+.web.zap { color: var(--wa); }
 .web svg { width: 17px; height: 17px; }
 .sendmsg { display: flex; justify-content: center; align-items: center; gap: 7px; min-width: 0; text-align: center; line-height: 1.15; font-weight: 700; font-size: 13px; color: var(--wa);
   padding: 10px 6px; border-radius: 10px; text-decoration: none; box-shadow: 0 0 0 1px var(--line); }
@@ -345,7 +346,7 @@ function card(it) {
         <span class="pl">Tarifa asociado</span><span class="pv">${esc(it.asociado)}</span>
         <span class="ph">${ico("copy")}<span>Copiar importe</span></span></button>
     </div>
-    <div class="actions"><a class="web" data-share href="${esc(webLink(it))}" target="_blank" rel="noopener">${ico("ext")}Ver en teka.com</a><a class="web" data-wa href="#" role="button">${ico("wa")}WhatsApp</a></div>
+    <div class="actions"><a class="web" data-share href="${esc(webLink(it))}" target="_blank" rel="noopener">${ico("ext")}Ver en teka.com</a><a class="web zap" data-wa href="#" role="button">${ico("wa")}WhatsApp</a></div>
   </article>`;
 }
 function welcome(hasData) {
@@ -406,7 +407,7 @@ function openMenu() {
       ${installEvt ? `<button class="btn ghost" data-act="install">${ico("dl")}Instalar app en el móvil</button>` : ""}
       <button class="btn ghost" data-act="close">Cerrar</button>
     </div>
-    <p class="credit" style="margin-top:16px">© 2026 · Alejandro Garzón · versión 6</p>`);
+    <p class="credit" style="margin-top:16px">© 2026 · Alejandro Garzón · versión 7</p>`);
 }
 function notice(title, text) {
   openSheet(`<h2>${esc(title)}</h2><p>${text}</p><div class="row"><button class="btn" data-act="close">Entendido</button></div>`);
