@@ -95,13 +95,13 @@ main { padding: 12px max(14px, env(safe-area-inset-right, 0px)) 28px max(14px, e
 .price:active { filter: brightness(.94); }
 .price.done .ph { color: var(--ok); }
 .price.a.done .ph { color: #6fe0a6; }
-.actions { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 2px 6px; margin-top: 8px; }
-.web { display: inline-flex; align-items: center; gap: 7px; font-weight: 700; font-size: 13px; color: var(--red);
-  padding: 8px 10px 8px 6px; border-radius: 10px; text-decoration: none; }
+.actions { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; }
+.web { display: flex; justify-content: center; align-items: center; gap: 7px; min-width: 0; text-align: center; line-height: 1.15; font-weight: 700; font-size: 13px; color: var(--red);
+  padding: 10px 6px; border-radius: 10px; text-decoration: none; box-shadow: 0 0 0 1px var(--line); }
 .web:active { background: var(--soft); }
 .web svg { width: 17px; height: 17px; }
-.wa { display: inline-flex; align-items: center; gap: 7px; font-weight: 700; font-size: 13px; color: var(--wa);
-  padding: 8px 10px; border-radius: 10px; text-decoration: none; }
+.wa { display: flex; justify-content: center; align-items: center; gap: 7px; min-width: 0; text-align: center; line-height: 1.15; font-weight: 700; font-size: 13px; color: var(--wa);
+  padding: 10px 6px; border-radius: 10px; text-decoration: none; box-shadow: 0 0 0 1px var(--line); }
 .wa:active { background: var(--soft); }
 .wa svg { width: 18px; height: 18px; }
 .more { width: 100%; padding: 14px; border-radius: 14px; background: var(--card); color: var(--red); font-weight: 800;
@@ -406,7 +406,7 @@ function openMenu() {
       ${installEvt ? `<button class="btn ghost" data-act="install">${ico("dl")}Instalar app en el móvil</button>` : ""}
       <button class="btn ghost" data-act="close">Cerrar</button>
     </div>
-    <p class="credit" style="margin-top:16px">© 2026 · Alejandro Garzón</p>`);
+    <p class="credit" style="margin-top:16px">© 2026 · Alejandro Garzón · versión 4</p>`);
 }
 function notice(title, text) {
   openSheet(`<h2>${esc(title)}</h2><p>${text}</p><div class="row"><button class="btn" data-act="close">Entendido</button></div>`);
